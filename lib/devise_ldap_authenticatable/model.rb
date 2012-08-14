@@ -38,6 +38,7 @@ module Devise
 
       def password=(new_password)
         @password = new_password
+        self.encrypted_password = password_digest(@password) if @password.present? && respond_to?(:encrypted_password=)
       end
 
       # Checks if a resource is valid upon authentication.
